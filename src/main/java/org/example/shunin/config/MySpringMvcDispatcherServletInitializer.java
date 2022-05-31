@@ -5,6 +5,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class MySpringMvcDispatcherServletInitializer
         extends AbstractAnnotationConfigDispatcherServletInitializer {   // заменяет web.xml
 
+
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
