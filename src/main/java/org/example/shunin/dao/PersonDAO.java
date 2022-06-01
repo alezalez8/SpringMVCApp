@@ -29,9 +29,13 @@ public class PersonDAO {
     }
 
     public void save(Person person) {
-        person.setId(person.getId() + 1);
+        person.setId(++PEOPLE_COUNT);
         people.add(person);
     }
 
 
+    public void delete(int id) {
+        people.remove(id);
+
+    }
 }
