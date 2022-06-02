@@ -49,6 +49,7 @@ public class PeopleContoller {
         return "redirect:/people";
     }
 
+
     @GetMapping("/{id}/edit")  // получаем тело из базы и запихиваем в модель
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("person", personDAO.show(id));
