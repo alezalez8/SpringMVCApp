@@ -1,6 +1,6 @@
 package org.example.shunin.controllers;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.example.shunin.dao.PersonDAO;
 import org.example.shunin.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,6 @@ public class PeopleContoller {
         return "people/show";
     }
 
-/*
-    @GetMapping("/new")
-    public String newPerson(Model model) {
-        model.addAttribute("person", new Person());
-        return "people/new";
-    }
-*/
 
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {

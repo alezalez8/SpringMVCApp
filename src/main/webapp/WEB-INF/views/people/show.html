@@ -9,8 +9,8 @@
 <p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
 <p th:text="${person.getId()}">VAlUE</p>
 
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit person</a>  <!-- с помощью <a можем -->
-<br/>                                                                     <!-- посылать только get запрос -->
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit person</a>
+<br/>
 
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     <input type="submit" value="Delete"/>
