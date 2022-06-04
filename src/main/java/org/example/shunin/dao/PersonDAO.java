@@ -52,24 +52,37 @@ public class PersonDAO {
     }
 
     public Person show(int id) {
+        Person person = null;
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT * FROM Person WHERE id = ?");
+            preparedStatement.setInt(1, id);
+             ResultSet resultSet = preparedStatement.executeQuery();
+             person = new Person();
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         /* return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);*/
         return null;
     }
 
     public void save(Person person) {
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName() +
-                    "'," + person.getAge() + ",'" + person.getEmail() + "')";
-            statement.executeUpdate(SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Person" +
+                    " VALUES (1, ?,?,? )");
+            preparedStatement.setString(1, person.getName());
+            preparedStatement.setInt(2, person.getAge());
+            preparedStatement.setString(3, person.getEmail());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         person.setId(++PEOPLE_COUNT);
-        //   people.add(person);
-    }
+         }
 
 
     public void delete(int id) {
