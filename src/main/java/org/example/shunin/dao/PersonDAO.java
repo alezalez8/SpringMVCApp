@@ -57,17 +57,17 @@ public class PersonDAO {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("SELECT * FROM Person WHERE id = ?");
             preparedStatement.setInt(1, id);
-             ResultSet resultSet = preparedStatement.executeQuery();
-             person = new Person();
-
-
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            person = new Person();
+            person.setName(resultSet.getString("name"));
+            person.setEmail(resultSet.getString("email"));
+            person.setId(resultSet.getInt("id"));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        /* return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);*/
-        return null;
+        return person;
     }
 
     public void save(Person person) {
@@ -82,19 +82,36 @@ public class PersonDAO {
             e.printStackTrace();
         }
         person.setId(++PEOPLE_COUNT);
-         }
+    }
 
 
     public void delete(int id) {
-        //   people.removeIf(person -> person.getId() == id);
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("DELETE FROM Person WHERE id=?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void update(int id, Person person) {
-/*        Person personToBeUpdate = show(id);
-        personToBeUpdate.setName(person.getName());
-        personToBeUpdate.setAge(person.getAge());
-        personToBeUpdate.setEmail(person.getEmail());*/
+
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("UPDATE Person SET name=?, age=?, email=? WHERE id=?");
+
+            preparedStatement.setString(1, person.getName());
+            preparedStatement.setInt(2, person.getAge());
+            preparedStatement.setString(3, person.getEmail());
+            preparedStatement.setInt(4, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }
