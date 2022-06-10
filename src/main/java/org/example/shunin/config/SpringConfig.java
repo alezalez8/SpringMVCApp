@@ -41,6 +41,7 @@ public class SpringConfig  implements WebMvcConfigurer {  // это взамен
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
+        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
 
@@ -56,7 +57,9 @@ public class SpringConfig  implements WebMvcConfigurer {  // это взамен
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding("UTF-8");
         registry.viewResolver(resolver);
+
     }
 
     @Bean
@@ -66,15 +69,8 @@ public class SpringConfig  implements WebMvcConfigurer {  // это взамен
         dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver")));
         dataSource.setUrl(environment.getProperty("url"));
         dataSource.setUsername(environment.getProperty("usename"));
-        //dataSource.setUsername("postgres");
         dataSource.setPassword(environment.getProperty("password"));
 
-/*
-       dataSource.setDriverClassName("org.postgresql.Driver");
-       dataSource.setUrl("jdbc:postgresql://localhost:5432/first_db");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("postgres");
-*/
         return dataSource;
     }
 
@@ -83,4 +79,6 @@ public class SpringConfig  implements WebMvcConfigurer {  // это взамен
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
+
+
 }
