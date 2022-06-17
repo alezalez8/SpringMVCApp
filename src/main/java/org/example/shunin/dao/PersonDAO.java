@@ -23,13 +23,12 @@ public class PersonDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional   // вместо   session.beginTransaction();
+    @Transactional(readOnly = true)   // вместо   session.beginTransaction();
     public List<Person> index() {
         Session session = sessionFactory.getCurrentSession();
-        List<Person> people = new ArrayList<>();
-
-
-        return null;
+        List<Person> people = session.createQuery("select p from Person p", Person.class)
+                .getResultList();
+        return people;
     }
 
     public Person show(int id) {
