@@ -1,10 +1,13 @@
 package org.example.shunin.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
@@ -30,6 +33,10 @@ public class Person {
     @Column(name = "email")
     private String email;
 
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<Item> itemList;
+
     public Person() {
     }
 
@@ -38,6 +45,14 @@ public class Person {
         this.name = name;
         this.age = age;
 
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
     }
 
     public String getEmail() {
