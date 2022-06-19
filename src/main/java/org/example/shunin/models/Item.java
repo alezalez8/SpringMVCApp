@@ -1,15 +1,16 @@
 package org.example.shunin.models;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Item")
+@Table(name = "item")
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "Item name should not be empty")
@@ -17,8 +18,8 @@ public class Item {
     private String itemName;
 
     @ManyToOne
-    @JoinColumn(columnDefinition = "person_id", referencedColumnName = "id")
-    private Person person;
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person owner;
 
     public Item() {
     }
@@ -44,11 +45,19 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public Person getPerson() {
-        return person;
+    public Person getOwner() {
+        return owner;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", itemName='" + itemName + '\'' +
+                '}';
     }
 }

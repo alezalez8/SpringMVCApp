@@ -18,6 +18,6 @@ public interface PeopleRepository extends JpaRepository<Person, Integer> {
 
     List<Person> findByNameStartingWith(String startingWith);
 
-    List<Person> findByNameOrEmail(String name, String emai);
+    List<Person> findByNameOrEmail(String name, String email);
 
 }

@@ -23,12 +23,6 @@ public class PeopleService {
     }
 
 
-   /* public List<Person> persTest(int age) {
-        System.out.println(peopleRepository.findAllAndAgeLessThan(age));
-        return null;
-    }*/
-
-
     public List<Person> findAll() {
         return peopleRepository.findAll();
     }
@@ -55,7 +49,12 @@ public class PeopleService {
     }
 
 
+
+
     public void test() {
         System.out.println("Testing here with debug. Inside Hibernate Transaction");
     }
+
+
+
 }

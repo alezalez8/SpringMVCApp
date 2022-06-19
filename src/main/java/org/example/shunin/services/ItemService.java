@@ -21,13 +21,16 @@ public class ItemService {
         this.itemsRepository = itemsRepository;
     }
 
+
+
     public List<Item> findByItemName(String itemName) {
         return itemsRepository.findByItemName(itemName);
     }
 
- /*   public List<Item> findByOwner(Person owner) {
+
+    public List<Item> findByOwner(Person owner) {
         return itemsRepository.findByOwner(owner);
-    }*/
+    }
 
 
 }
