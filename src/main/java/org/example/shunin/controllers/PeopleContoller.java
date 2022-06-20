@@ -33,7 +33,7 @@ public class PeopleContoller {
         itemService.findByItemName("Airpods");
         itemService.findByOwner(peopleService.findAll().get(0));
 
-        peopleService.test();
+       // peopleService.test();
         return "people/index";
     }
 
