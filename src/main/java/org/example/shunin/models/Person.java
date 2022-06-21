@@ -46,6 +46,9 @@ public class Person {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @Enumerated(EnumType.STRING)
+    private Mood mood;
+
 
 
 
@@ -61,6 +64,14 @@ public class Person {
         this.name = name;
         this.age = age;
 
+    }
+
+    public Mood getMood() {
+        return mood;
+    }
+
+    public void setMood(Mood mood) {
+        this.mood = mood;
     }
 
     public Date getDateOfBirth() {

@@ -1,6 +1,7 @@
 package org.example.shunin.services;
 
 
+import org.example.shunin.models.Mood;
 import org.example.shunin.models.Person;
 import org.example.shunin.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class PeopleService {
     @Transactional()
     public void save(Person person) {
         person.setCreatedAt(new Date());
+        person.setMood(Mood.CALM);
         peopleRepository.save(person);
     }
 

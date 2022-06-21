@@ -2,6 +2,7 @@ package org.example.shunin.controllers;
 
 import javax.validation.Valid;
 
+import org.example.shunin.models.Mood;
 import org.example.shunin.models.Person;
 import org.example.shunin.services.ItemService;
 import org.example.shunin.services.PeopleService;
@@ -30,9 +31,8 @@ public class PeopleContoller {
        // model.addAttribute("people", personDAO.index());
         model.addAttribute("people", peopleService.findAll());
 
-        itemService.findByItemName("Airpods");
-        itemService.findByOwner(peopleService.findAll().get(0));
-
+        //itemService.findByItemName("Airpods");
+        //itemService.findByOwner(peopleService.findAll().get(0));
        // peopleService.test();
         return "people/index";
     }
