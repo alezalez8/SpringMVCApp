@@ -32,7 +32,7 @@ public class PeopleContoller {
     public String index(Model model) {
        // model.addAttribute("people", personDAO.index());
         model.addAttribute("people", peopleService.findAll());
-        personDAON.testNPlus1();
+       // personDAON.testNPlus1();
 
         //itemService.findByItemName("Airpods");
         //itemService.findByOwner(peopleService.findAll().get(0));

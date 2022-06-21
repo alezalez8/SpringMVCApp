@@ -3,6 +3,7 @@ package org.example.shunin.repositories;
 
 import org.example.shunin.models.Item;
 import org.example.shunin.models.Person;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,8 @@ public interface ItemsRepository extends JpaRepository<Item, Integer> {
     List<Item> findByOwner(Person owner);
 
     List<Item> findByItemName(String itemName);
+
+    List<Item> findByItemName(String itemName, Pageable pageable);
 
 
 }

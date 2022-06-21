@@ -2,26 +2,26 @@ package org.example.shunin.dao;
 
 
 import org.example.shunin.models.Person;
+import org.example.shunin.repositories.AddedPeopleRepository;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Component
 public class PersonDAON {
 
     private final EntityManager entityManager;
+    private final AddedPeopleRepository addedPeopleRepository;
 
     @Autowired
-    public PersonDAON(EntityManager entityManager) {
+    public PersonDAON(EntityManager entityManager, AddedPeopleRepository addedPeopleRepository) {
         this.entityManager = entityManager;
+        this.addedPeopleRepository = addedPeopleRepository;
     }
 
     @Transactional(readOnly = true)
