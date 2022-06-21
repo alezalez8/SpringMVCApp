@@ -2,7 +2,7 @@ package org.example.shunin.controllers;
 
 import javax.validation.Valid;
 
-import org.example.shunin.models.Mood;
+import org.example.shunin.dao.PersonDAON;
 import org.example.shunin.models.Person;
 import org.example.shunin.services.ItemService;
 import org.example.shunin.services.PeopleService;
@@ -18,18 +18,21 @@ public class PeopleContoller {
 
     private final PeopleService peopleService;
     private final ItemService itemService;
+    private final PersonDAON personDAON;
 
     @Autowired
-    public PeopleContoller(PeopleService peopleService, ItemService itemService) {
+    public PeopleContoller(PeopleService peopleService, ItemService itemService, PersonDAON personDAON) {
 
         this.peopleService = peopleService;
         this.itemService = itemService;
+        this.personDAON = personDAON;
     }
 
     @GetMapping()
     public String index(Model model) {
        // model.addAttribute("people", personDAO.index());
         model.addAttribute("people", peopleService.findAll());
+        personDAON.testNPlus1();
 
         //itemService.findByItemName("Airpods");
         //itemService.findByOwner(peopleService.findAll().get(0));
